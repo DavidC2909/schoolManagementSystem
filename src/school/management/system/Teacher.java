@@ -5,7 +5,9 @@ package school.management.system;
 public class Teacher {
     private int id;
     private String name;
-    private double salary;
+    private int salary;
+    private int salaryEarned;
+
 
 
     /**
@@ -14,10 +16,11 @@ public class Teacher {
      * @param name name of the teacher.
      * @param salary salary of the teacher.
      */
-    public Teacher(int id, String name, double salary){
+    public Teacher(int id, String name, int salary){
         this.id=id;
         this.name=name;
         this.salary=salary;
+        this.salaryEarned=0;
     }
 
     //return the id of the teacher.
@@ -31,12 +34,29 @@ public class Teacher {
     }
 
     //return salary of the teacher.
-    public double getSalary(){
+    public int getSalary(){
         return salary;
     }
 
     //set the salary.
-    public void setSalary(double salary){
+    public void setSalary(int salary){
         this.salary=salary;
+    }
+
+    /**
+     * adds to the salary.
+     * removes from the total money earned by the school.
+     * @param salary
+     */
+    public void receiveSalary(int salary){
+        salaryEarned += salary;
+        School.updateTotalMoneySpent(salary);
+    }
+
+    @Override
+    public String toString() {
+        return "Name of the teacher: "+name+"."
+                +" Total salary earned so far $"
+                +salaryEarned;
     }
 }
